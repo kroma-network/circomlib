@@ -1,0 +1,115 @@
+load("@kroma_network_rules_circom//:build_defs.bzl", "circom_library", "compile_circuit")
+
+package(default_visibility = ["//visibility:public"])
+
+circom_library(
+    name = "ch",
+    srcs = ["ch.circom"],
+)
+
+circom_library(
+    name = "constants",
+    srcs = ["constants.circom"],
+)
+
+circom_library(
+    name = "maj",
+    srcs = ["maj.circom"],
+)
+
+circom_library(
+    name = "rotate",
+    srcs = ["rotate.circom"],
+)
+
+circom_library(
+    name = "sha256",
+    srcs = ["sha256.circom"],
+    deps = [
+        ":constants",
+        ":sha256compression",
+    ],
+)
+
+circom_library(
+    name = "sha256_2",
+    srcs = ["sha256_2.circom"],
+    deps = [
+        ":constants",
+        ":sha256compression",
+        "//circuits:bitify",
+    ],
+)
+
+circom_library(
+    name = "sha256compression",
+    srcs = ["sha256compression.circom"],
+    deps = [
+        ":constants",
+        ":sha256compression_function",
+        ":sigmaplus",
+        ":t1",
+        ":t2",
+        "//circuits:binsum",
+    ],
+)
+
+circom_library(
+    name = "sha256compression_function",
+    srcs = ["sha256compression_function.circom"],
+)
+
+circom_library(
+    name = "shift",
+    srcs = ["shift.circom"],
+)
+
+circom_library(
+    name = "sigma",
+    srcs = ["sigma.circom"],
+    deps = [
+        ":rotate",
+        ":shift",
+        ":xor3",
+    ],
+)
+
+circom_library(
+    name = "sigmaplus",
+    srcs = ["sigmaplus.circom"],
+    deps = [
+        ":sigma",
+        "//circuits:binsum",
+    ],
+)
+
+circom_library(
+    name = "t1",
+    srcs = ["t1.circom"],
+    deps = [
+        ":ch",
+        ":sigma",
+        "//circuits:binsum",
+    ],
+)
+
+circom_library(
+    name = "t2",
+    srcs = ["t2.circom"],
+    deps = [
+        ":maj",
+        ":sigma",
+        "//circuits:binsum",
+    ],
+)
+
+circom_library(
+    name = "xor3",
+    srcs = ["xor3.circom"],
+)
+
+compile_circuit(
+    name = "main",
+    main = "main.circom",
+    deps = [":sha256_2"],
+)

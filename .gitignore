@@ -63,3 +63,5 @@ typings/
 tmp
 
 .DS_Store
+
+/bazel-*

@@ -1,0 +1,324 @@
+load("@kroma_network_rules_circom//:build_defs.bzl", "compile_circuit")
+
+package(default_visibility = ["//visibility:public"])
+
+compile_circuit(
+    name = "aliascheck_test",
+    main = "aliascheck_test.circom",
+    deps = ["//circuits:aliascheck"],
+)
+
+compile_circuit(
+    name = "babyadd_tester",
+    main = "babyadd_tester.circom",
+    deps = ["//circuits:babyjub"],
+)
+
+compile_circuit(
+    name = "babycheck_test",
+    main = "babycheck_test.circom",
+    deps = ["//circuits:babyjub"],
+)
+
+compile_circuit(
+    name = "babypbk_test",
+    main = "babypbk_test.circom",
+    deps = ["//circuits:babyjub"],
+)
+
+compile_circuit(
+    name = "binsub_test",
+    main = "binsub_test.circom",
+    deps = [
+        "//circuits:binsub",
+        "//circuits:bitify",
+    ],
+)
+
+compile_circuit(
+    name = "constants_test",
+    main = "constants_test.circom",
+    deps = ["//circuits/sha256:constants"],
+)
+
+compile_circuit(
+    name = "eddsa_test",
+    main = "eddsa_test.circom",
+    deps = ["//circuits:eddsa"],
+)
+
+compile_circuit(
+    name = "eddsamimc_test",
+    main = "eddsamimc_test.circom",
+    deps = ["//circuits:eddsamimc"],
+)
+
+compile_circuit(
+    name = "eddsaposeidon_test",
+    main = "eddsaposeidon_test.circom",
+    deps = ["//circuits:eddsaposeidon"],
+)
+
+compile_circuit(
+    name = "edwards2montgomery",
+    main = "edwards2montgomery.circom",
+    deps = ["//circuits:montgomery"],
+)
+
+compile_circuit(
+    name = "escalarmul_min_test",
+    main = "escalarmul_min_test.circom",
+    deps = [
+        "//circuits:bitify",
+        "//circuits:escalarmul",
+    ],
+)
+
+compile_circuit(
+    name = "escalarmul_test",
+    main = "escalarmul_test.circom",
+    deps = [
+        "//circuits:bitify",
+        "//circuits:escalarmul",
+    ],
+)
+
+compile_circuit(
+    name = "escalarmul_test_min",
+    main = "escalarmul_test_min.circom",
+    deps = [
+        "//circuits:bitify",
+        "//circuits:escalarmul",
+    ],
+)
+
+compile_circuit(
+    name = "escalarmulany_test",
+    main = "escalarmulany_test.circom",
+    deps = [
+        "//circuits:bitify",
+        "//circuits:escalarmulany",
+    ],
+)
+
+compile_circuit(
+    name = "escalarmulfix_test",
+    main = "escalarmulfix_test.circom",
+    deps = [
+        "//circuits:bitify",
+        "//circuits:escalarmulfix",
+    ],
+)
+
+compile_circuit(
+    name = "escalarmulw4table_test",
+    main = "escalarmulw4table_test.circom",
+    deps = ["//circuits:escalarmulw4table"],
+)
+
+compile_circuit(
+    name = "escalarmulw4table_test3",
+    main = "escalarmulw4table_test3.circom",
+    deps = ["//circuits:escalarmulw4table"],
+)
+
+compile_circuit(
+    name = "escalarmulw4table",
+    main = "escalarmulw4table.circom",
+    deps = ["//circuits:escalarmulw4table"],
+)
+
+compile_circuit(
+    name = "greatereqthan",
+    main = "greatereqthan.circom",
+    deps = ["//circuits:comparators"],
+)
+
+compile_circuit(
+    name = "greaterthan",
+    main = "greaterthan.circom",
+    deps = ["//circuits:comparators"],
+)
+
+compile_circuit(
+    name = "isequal",
+    main = "isequal.circom",
+    deps = ["//circuits:comparators"],
+)
+
+compile_circuit(
+    name = "iszero",
+    main = "iszero.circom",
+    deps = ["//circuits:comparators"],
+)
+
+compile_circuit(
+    name = "lessthan",
+    main = "lessthan.circom",
+    deps = ["//circuits:comparators"],
+)
+
+compile_circuit(
+    name = "lesseqthan",
+    main = "lesseqthan.circom",
+    deps = ["//circuits:comparators"],
+)
+
+compile_circuit(
+    name = "mimc_sponge_hash_test",
+    main = "mimc_sponge_hash_test.circom",
+    deps = ["//circuits:mimcsponge"],
+)
+
+compile_circuit(
+    name = "mimc_sponge_test",
+    main = "mimc_sponge_test.circom",
+    deps = ["//circuits:mimcsponge"],
+)
+
+compile_circuit(
+    name = "mimc_test",
+    main = "mimc_test.circom",
+    deps = ["//circuits:mimc"],
+)
+
+compile_circuit(
+    name = "montgomery2edwards",
+    main = "montgomery2edwards.circom",
+    deps = ["//circuits:montgomery"],
+)
+
+compile_circuit(
+    name = "montgomeryadd",
+    main = "montgomeryadd.circom",
+    deps = ["//circuits:montgomery"],
+)
+
+compile_circuit(
+    name = "montgomerydouble",
+    main = "montgomerydouble.circom",
+    deps = ["//circuits:montgomery"],
+)
+
+compile_circuit(
+    name = "mux1_1",
+    main = "mux1_1.circom",
+    deps = [
+        "//circuits:bitify",
+        "//circuits:mux1",
+    ],
+)
+
+compile_circuit(
+    name = "mux2_1",
+    main = "mux2_1.circom",
+    deps = [
+        "//circuits:bitify",
+        "//circuits:mux2",
+    ],
+)
+
+compile_circuit(
+    name = "mux3_1",
+    main = "mux3_1.circom",
+    deps = [
+        "//circuits:bitify",
+        "//circuits:mux3",
+    ],
+)
+
+compile_circuit(
+    name = "mux4_1",
+    main = "mux4_1.circom",
+    deps = [
+        "//circuits:bitify",
+        "//circuits:mux4",
+    ],
+)
+
+compile_circuit(
+    name = "pedersen_test",
+    main = "pedersen_test.circom",
+    deps = [
+        "//circuits:bitify",
+        "//circuits:pedersen_old",
+    ],
+)
+
+compile_circuit(
+    name = "pedersen2_test",
+    main = "pedersen2_test.circom",
+    deps = [
+        "//circuits:bitify",
+        "//circuits:pedersen",
+    ],
+)
+
+compile_circuit(
+    name = "pointbits_loopback",
+    main = "pointbits_loopback.circom",
+    deps = ["//circuits:pointbits"],
+)
+
+compile_circuit(
+    name = "poseidon3_test",
+    main = "poseidon3_test.circom",
+    deps = ["//circuits:poseidon"],
+)
+
+compile_circuit(
+    name = "poseidon6_test",
+    main = "poseidon6_test.circom",
+    deps = ["//circuits:poseidon"],
+)
+
+compile_circuit(
+    name = "poseidonex_test",
+    main = "poseidonex_test.circom",
+    deps = ["//circuits:poseidon"],
+)
+
+compile_circuit(
+    name = "sha256_2_test",
+    main = "sha256_2_test.circom",
+    deps = ["//circuits/sha256:sha256_2"],
+)
+
+compile_circuit(
+    name = "sha256_test448",
+    main = "sha256_test448.circom",
+    deps = ["//circuits/sha256"],
+)
+
+compile_circuit(
+    name = "sha256_test512",
+    main = "sha256_test512.circom",
+    deps = ["//circuits/sha256"],
+)
+
+compile_circuit(
+    name = "sign_test",
+    main = "sign_test.circom",
+    deps = ["//circuits:sign"],
+)
+
+compile_circuit(
+    name = "smtprocessor10_test",
+    main = "smtprocessor10_test.circom",
+    deps = ["//circuits/smt:smtprocessor"],
+)
+
+compile_circuit(
+    name = "smtverifier10_test",
+    main = "smtverifier10_test.circom",
+    deps = ["//circuits/smt:smtverifier"],
+)
+
+compile_circuit(
+    name = "sum_test",
+    main = "sum_test.circom",
+    deps = [
+        "//circuits:binsum",
+        "//circuits:bitify",
+    ],
+)

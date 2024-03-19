@@ -1,0 +1,249 @@
+load("@kroma_network_rules_circom//:build_defs.bzl", "circom_library")
+
+package(default_visibility = ["//visibility:public"])
+
+circom_library(
+    name = "aliascheck",
+    srcs = [
+        "aliascheck.circom",
+        "bitify.circom",
+        "comparators.circom",
+    ],
+)
+
+circom_library(
+    name = "babyjub",
+    srcs = [
+        "babyjub.circom",
+        "escalarmulfix.circom",
+    ],
+    deps = [
+        ":bitify",
+        ":montgomery",
+        ":mux3",
+    ],
+)
+
+circom_library(
+    name = "bitify",
+    srcs = [
+        "aliascheck.circom",
+        "bitify.circom",
+        "comparators.circom",
+    ],
+)
+
+circom_library(
+    name = "binsub",
+    srcs = ["binsub.circom"],
+)
+
+circom_library(
+    name = "binsum",
+    srcs = ["binsum.circom"],
+)
+
+circom_library(
+    name = "comparators",
+    srcs = ["comparators.circom"],
+    deps = [
+        ":binsum",
+        ":bitify",
+    ],
+)
+
+circom_library(
+    name = "compconstant",
+    srcs = ["compconstant.circom"],
+    deps = [":bitify"],
+)
+
+circom_library(
+    name = "eddsa",
+    srcs = ["eddsa.circom"],
+    deps = [
+        ":compconstant",
+        ":escalarmulany",
+        ":escalarmulfix",
+        ":pedersen",
+        ":pointbits",
+    ],
+)
+
+circom_library(
+    name = "eddsamimc",
+    srcs = ["eddsamimc.circom"],
+    deps = [
+        ":bitify",
+        ":compconstant",
+        ":escalarmulany",
+        ":escalarmulfix",
+        ":mimc",
+        ":pointbits",
+    ],
+)
+
+circom_library(
+    name = "eddsasponge",
+    srcs = ["eddsasponge.circom"],
+    deps = [
+        ":bitify",
+        ":compconstant",
+        ":escalarmulany",
+        ":escalarmulfix",
+        ":mimcsponge",
+        ":pointbits",
+    ],
+)
+
+circom_library(
+    name = "eddsaposeidon",
+    srcs = ["eddsaposeidon.circom"],
+    deps = [
+        ":bitify",
+        ":compconstant",
+        ":escalarmulany",
+        ":escalarmulfix",
+        ":poseidon",
+    ],
+)
+
+circom_library(
+    name = "escalarmul",
+    srcs = ["escalarmul.circom"],
+    deps = [
+        ":babyjub",
+        ":escalarmulw4table",
+        ":mux4",
+    ],
+)
+
+circom_library(
+    name = "escalarmulany",
+    srcs = ["escalarmulany.circom"],
+    deps = [
+        ":babyjub",
+        ":comparators",
+        ":montgomery",
+    ],
+)
+
+circom_library(
+    name = "escalarmulfix",
+    srcs = [
+        "babyjub.circom",
+        "escalarmulfix.circom",
+    ],
+    deps = [
+        ":bitify",
+        ":montgomery",
+        ":mux3",
+    ],
+)
+
+circom_library(
+    name = "escalarmulw4table",
+    srcs = ["escalarmulw4table.circom"],
+)
+
+circom_library(
+    name = "gates",
+    srcs = ["gates.circom"],
+)
+
+circom_library(
+    name = "mimc",
+    srcs = ["mimc.circom"],
+)
+
+circom_library(
+    name = "mimcsponge",
+    srcs = ["mimcsponge.circom"],
+)
+
+circom_library(
+    name = "montgomery",
+    srcs = ["montgomery.circom"],
+)
+
+circom_library(
+    name = "multiplexer",
+    srcs = ["multiplexer.circom"],
+)
+
+circom_library(
+    name = "mux1",
+    srcs = ["mux1.circom"],
+)
+
+circom_library(
+    name = "mux2",
+    srcs = ["mux2.circom"],
+)
+
+circom_library(
+    name = "mux3",
+    srcs = ["mux3.circom"],
+)
+
+circom_library(
+    name = "mux4",
+    srcs = ["mux4.circom"],
+)
+
+circom_library(
+    name = "pedersen",
+    srcs = ["pedersen.circom"],
+    deps = [
+        ":babyjub",
+        ":montgomery",
+    ],
+)
+
+circom_library(
+    name = "pedersen_old",
+    srcs = ["pedersen_old.circom"],
+    deps = [":escalarmul"],
+)
+
+circom_library(
+    name = "pointbits",
+    srcs = ["pointbits.circom"],
+    deps = [
+        ":babyjub",
+        ":compconstant",
+    ],
+)
+
+circom_library(
+    name = "poseidon",
+    srcs = ["poseidon.circom"],
+    deps = [":poseidon_constants"],
+)
+
+circom_library(
+    name = "poseidon_old",
+    srcs = ["poseidon_old.circom"],
+    deps = [":poseidon_constants_old"],
+)
+
+circom_library(
+    name = "poseidon_constants",
+    srcs = ["poseidon_constants.circom"],
+)
+
+circom_library(
+    name = "poseidon_constants_old",
+    srcs = ["poseidon_constants_old.circom"],
+)
+
+circom_library(
+    name = "sign",
+    srcs = ["sign.circom"],
+    deps = [":compconstant"],
+)
+
+circom_library(
+    name = "switcher",
+    srcs = ["switcher.circom"],
+)

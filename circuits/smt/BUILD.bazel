@@ -1,0 +1,70 @@
+load("@kroma_network_rules_circom//:build_defs.bzl", "circom_library")
+
+package(default_visibility = ["//visibility:public"])
+
+circom_library(
+    name = "smthash_mimc",
+    srcs = ["smthash_mimc.circom"],
+    deps = ["//circuits:mimc"],
+)
+
+circom_library(
+    name = "smthash_poseidon",
+    srcs = ["smthash_poseidon.circom"],
+    deps = ["//circuits:poseidon"],
+)
+
+circom_library(
+    name = "smtlevins",
+    srcs = ["smtlevins.circom"],
+)
+
+circom_library(
+    name = "smtprocessor",
+    srcs = ["smtprocessor.circom"],
+    deps = [
+        ":smthash_poseidon",
+        ":smtlevins",
+        ":smtprocessorlevel",
+        ":smtprocessorsm",
+        "//circuits:bitify",
+        "//circuits:comparators",
+        "//circuits:gates",
+        "//circuits:switcher",
+    ],
+)
+
+circom_library(
+    name = "smtprocessorlevel",
+    srcs = ["smtprocessorlevel.circom"],
+)
+
+circom_library(
+    name = "smtprocessorsm",
+    srcs = ["smtprocessorsm.circom"],
+)
+
+circom_library(
+    name = "smtverifier",
+    srcs = ["smtverifier.circom"],
+    deps = [
+        ":smthash_poseidon",
+        ":smtlevins",
+        ":smtverifierlevel",
+        ":smtverifiersm",
+        "//circuits:bitify",
+        "//circuits:comparators",
+        "//circuits:gates",
+        "//circuits:switcher",
+    ],
+)
+
+circom_library(
+    name = "smtverifierlevel",
+    srcs = ["smtverifierlevel.circom"],
+)
+
+circom_library(
+    name = "smtverifiersm",
+    srcs = ["smtverifiersm.circom"],
+)
